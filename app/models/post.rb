@@ -10,5 +10,5 @@ class Post < ActiveRecord::Base
 			:access_type => "app_folder"},
 		:dropbox_visibility => 'public',
     :dropbox_options => {environment: ENV["RACK_ENV"]}
-  validates_attachment_content_type :audio_file, :content_type => /\Aimage/
+  validates_attachment_content_type :audio_file, :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
 end
