@@ -1,0 +1,13 @@
+<h1>Submit a new Post</h1>
+<%= form_for @post do |form|%>
+	<%= form.label :title%>
+	<%= form.text_field :title%>
+	<%= form.label :audio_file%>
+	<%= form.file_field :audio_file%>
+	<%= form.submit 'Submit', class: 'btn btn-primary btn-lg' %>
+<% end%>
+<h1>List of Posts</h1>
+<% @posts.each do |post|%>
+	<%= post.title%>
+	<%= image_tag(post.audio_file.url(:original))%>
+<% end%>
