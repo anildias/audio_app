@@ -1,3 +1,7 @@
+<head>
+	<%= stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</head>
 <h1>Submit a new Post</h1>
 <%= form_for @post do |form|%>
 	<%= form.label :title%>
@@ -9,17 +13,14 @@
 <h1>List of Posts</h1>
 <% @posts.each do |post|%>
 	<%= post.title%>
-	<a href="javascript:void(0)" id="playsound">At Station</a>
-
-<audio id="sound_effect" class="audio_player" preload="auto">
-    <source src= "<%= post.audio_file.url%>" type="audio/wav">
-</audio>
-	<%#= audio_tag(post.audio_file.url)%>
+	<%= post.audio_file.url%>
+	<%= link_to 'delete',post_path(post), :confirm => 'Are you sure?', :method => :delete%>
+	<div>
+		<audio src="<%= post.audio_file.url%>" id="audio_<%= post.id%>" />
+	</div>
 <% end%>
 <script type="text/javascript">
-$('#playsound').click(function (e) {
-    $('#sound_effect')[0].currentTime = 0;
-    $('#sound_effect')[0].play();
-    return false;
-});
+	audiojs.events.ready(function() {
+  	var as = audiojs.createAll();
+	});
 </script>

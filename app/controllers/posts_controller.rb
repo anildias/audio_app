@@ -13,6 +13,11 @@ class PostsController < ApplicationController
 		end
   end
 
+  def destroy
+    Post.destroy(params[:id]) if params[:id]
+    redirect_to posts_path, notice: "deleted"
+  end
+
   def post_params
     params.require(:post).permit(:audio_file, :title)
   end
